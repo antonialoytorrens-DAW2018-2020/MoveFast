@@ -9,7 +9,7 @@ package clients;
  *
  * @author antonialoy
  */
-public class Client {
+public abstract class Client {
     private String DNI;
     private String nomComplet;
     private String telefon;
@@ -48,6 +48,11 @@ public class Client {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" + "DNI=" + DNI + ", nomComplet=" + nomComplet + ", telefon=" + telefon + ", email=" + email + '}';
     }
     
 }

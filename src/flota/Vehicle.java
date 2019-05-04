@@ -9,24 +9,22 @@ package flota;
  *
  * @author antonialoy
  */
-public class Vehicle {
+public abstract class Vehicle {
     private String matricula;
     private int passatgers;
     private String marca;
     private String model;
     private String tipusCarnet;
     private double preuPerDia;
-    private String tipusVehicle;
     private String comentari;
 
-    public Vehicle(String matricula, int passatgers, String marca, String model, String tipusCarnet, double preuPerDia, String tipusVehicle, String comentari) {
+    public Vehicle(String matricula, int passatgers, String marca, String model, String tipusCarnet, double preuPerDia, String comentari) {
         this.matricula = matricula;
         this.passatgers = passatgers;
         this.marca = marca;
         this.model = model;
         this.tipusCarnet = tipusCarnet;
         this.preuPerDia = preuPerDia;
-        this.tipusVehicle = tipusVehicle;
         this.comentari = comentari;
     }
 
@@ -72,14 +70,6 @@ public class Vehicle {
 
     public void setPreuPerDia(double preuPerDia) {
         this.preuPerDia = preuPerDia;
-    }
-
-    public String getTipusVehicle() {
-        return tipusVehicle;
-    }
-
-    public void setTipusVehicle(String tipusVehicle) {
-        this.tipusVehicle = tipusVehicle;
     }
 
     public String getComentari() {

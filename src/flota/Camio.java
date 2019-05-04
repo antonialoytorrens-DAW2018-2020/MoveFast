@@ -17,7 +17,7 @@ public class Camio extends Vehicle {
     private String dimensions;
 
     public Camio(String tipusCamio, int cavalls, double tara, int numeroRodes, String dimensions, String matricula, int passatgers, String marca, String model, String tipusCarnet, double preuPerDia, String tipusVehicle, String comentari) {
-        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, tipusVehicle, comentari);
+        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, comentari);
         this.tipusCamio = tipusCamio;
         this.cavalls = cavalls;
         this.tara = tara;

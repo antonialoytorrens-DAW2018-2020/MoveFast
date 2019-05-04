@@ -15,7 +15,7 @@ public class Motocicleta extends Vehicle{
     private int numeroRodes;
 
     public Motocicleta(String tipusMotocicleta, int cavalls, int numeroRodes, String matricula, int passatgers, String marca, String model, String tipusCarnet, double preuPerDia, String tipusVehicle, String comentari) {
-        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, tipusVehicle, comentari);
+        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, comentari);
         this.tipusMotocicleta = tipusMotocicleta;
         this.cavalls = cavalls;
         this.numeroRodes = numeroRodes;

@@ -15,7 +15,7 @@ public class Cotxe extends Vehicle{
     private int portes;
 
     public Cotxe(String tipusCotxe, int cavalls, int portes, String matricula, int passatgers, String marca, String model, String tipusCarnet, double preuPerDia, String tipusVehicle, String comentari) {
-        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, tipusVehicle, comentari);
+        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, comentari);
         this.tipusCotxe = tipusCotxe;
         this.cavalls = cavalls;
         this.portes = portes;

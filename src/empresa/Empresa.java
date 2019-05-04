@@ -35,13 +35,7 @@ public class Empresa {
     public void borrarClient(Client x) {
         clients.remove(x);
     }
-
-    public void mostrarClient() {
-        for (Client x : clients) {
-            System.out.println(x);
-        }
-    }
-
+    
     public void afegirVehicle(Vehicle x) {
         vehicles.add(x);
     }
@@ -49,13 +43,7 @@ public class Empresa {
     public void borrarVehicle(Vehicle x) {
         vehicles.remove(x);
     }
-
-    public void mostrarVehicle() {
-        for (Vehicle x : vehicles) {
-            System.out.println(x);
-        }
-    }
-
+    
     public void afegirLloguer(Lloguer x) {
         lloguers.add(x);
     }
@@ -64,9 +52,22 @@ public class Empresa {
         lloguers.remove(x);
     }
 
-    public void mostrarLloguer() {
-        for (Lloguer x : lloguers) {
-            System.out.println(x);
-        }
+    public String getNom() {
+        return nom;
+    }
+
+    public ArrayList<Client> getClients() {
+        ArrayList<Client> copy = (ArrayList<Client>) clients.clone();
+        return copy;
+    }
+
+    public ArrayList<Vehicle> getVehicles() {
+        ArrayList<Vehicle> copy = (ArrayList<Vehicle>) vehicles.clone();
+        return copy;
+    }
+
+    public ArrayList<Lloguer> getLloguers() {
+        ArrayList<Lloguer> copy = (ArrayList<Lloguer>) lloguers.clone();
+        return copy;
     }
 }

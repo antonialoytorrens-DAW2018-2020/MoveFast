@@ -15,7 +15,7 @@ public class Furgoneta extends Vehicle {
     private int portes;
 
     public Furgoneta(String tipusFurgoneta, int cavalls, int portes, String matricula, int passatgers, String marca, String model, String tipusCarnet, double preuPerDia, String tipusVehicle, String comentari) {
-        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, tipusVehicle, comentari);
+        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, comentari);
         this.tipusFurgoneta = tipusFurgoneta;
         this.cavalls = cavalls;
         this.portes = portes;
