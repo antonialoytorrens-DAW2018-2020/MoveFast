@@ -6,7 +6,6 @@
 package empresa;
 
 import clients.Client;
-import flota.Cotxe;
 import flota.Vehicle;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -45,13 +44,13 @@ public class Empresa {
     }
 
     public void afegirLloguer(Vehicle v, Lloguer x) throws DataIncorrectaException, DuracioIncorrectaException {
-        if (v.isDisponible() && x.getLliuramentVehicles().isBefore(x.getRecollidaVehicles()) && (ChronoUnit.DAYS.between(x.getLliuramentVehicles(), x.getRecollidaVehicles())) >= 1) {
+        if (v.isDisponible(x.getLliuramentVehicles(), x.getRecollidaVehicles()) && x.getLliuramentVehicles().isBefore(x.getRecollidaVehicles()) && (ChronoUnit.DAYS.between(x.getLliuramentVehicles(), x.getRecollidaVehicles())) >= 1) {
             v.getLloguers().add(x);
         } else {
             if (x.getLliuramentVehicles().isAfter(x.getRecollidaVehicles()) || x.getLliuramentVehicles().isEqual(x.getRecollidaVehicles())) {
                 throw new DataIncorrectaException("Les dates que s'han introduït són incorrectes");
             }
-            if (ChronoUnit.MINUTES.between(x.getLliuramentVehicles(), x.getRecollidaVehicles()) < 30) {
+            if (ChronoUnit.DAYS.between(x.getLliuramentVehicles(), x.getRecollidaVehicles()) < 1) {
                 throw new DuracioIncorrectaException("La duració mínima per llogar un vehicle és d'un dia");
             }
         }

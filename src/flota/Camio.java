@@ -16,10 +16,9 @@ public class Camio extends Vehicle {
     private int numeroRodes;
     private String dimensions;
 
-    public Camio(String tipusCamio, int cavalls, double tara, int numeroRodes, String dimensions, String matricula, int passatgers, String marca, String model, String tipusCarnet, double preuPerDia, String tipusVehicle, String comentari) {
-        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, comentari);
+    public Camio(String tipusCamio, double tara, int numeroRodes, String dimensions, String matricula, int passatgers, String marca, String model, int cavalls, String tipusCarnet, double preuPerDia, String comentari) {
+        super(matricula, passatgers, marca, model, cavalls, tipusCarnet, preuPerDia, comentari);
         this.tipusCamio = tipusCamio;
-        this.cavalls = cavalls;
         this.tara = tara;
         this.numeroRodes = numeroRodes;
         this.dimensions = dimensions;
@@ -32,15 +31,7 @@ public class Camio extends Vehicle {
     public void setTipusCamio(String tipusCamio) {
         this.tipusCamio = tipusCamio;
     }
-
-    public int getCavalls() {
-        return cavalls;
-    }
-
-    public void setCavalls(int cavalls) {
-        this.cavalls = cavalls;
-    }
-
+    
     public double getTara() {
         return tara;
     }

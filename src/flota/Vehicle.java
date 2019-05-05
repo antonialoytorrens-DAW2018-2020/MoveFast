@@ -5,7 +5,10 @@
  */
 package flota;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import static jdk.nashorn.internal.objects.NativeMath.max;
+import static jdk.nashorn.internal.objects.NativeMath.min;
 import lloguers.Lloguer;
 
 /**
@@ -18,15 +21,17 @@ public abstract class Vehicle {
     private int passatgers;
     private String marca;
     private String model;
+    private int cavalls;
     private String tipusCarnet;
     private double preuPerDia;
     private String comentari;
 
-    public Vehicle(String matricula, int passatgers, String marca, String model, String tipusCarnet, double preuPerDia, String comentari) {
+    public Vehicle(String matricula, int passatgers, String marca, String model, int cavalls, String tipusCarnet, double preuPerDia, String comentari) {
         this.matricula = matricula;
         this.passatgers = passatgers;
         this.marca = marca;
         this.model = model;
+        this.cavalls = cavalls;
         this.tipusCarnet = tipusCarnet;
         this.preuPerDia = preuPerDia;
         this.comentari = comentari;
@@ -85,13 +90,30 @@ public abstract class Vehicle {
         this.comentari = comentari;
     }
 
-    public boolean isDisponible() {
+    public boolean isDisponible(LocalDate inici, LocalDate fi) {
         boolean disponible = true;
+        for (Lloguer x : lloguers) {
+            if(solapen(inici, fi, x.getLliuramentVehicles(), x.getRecollidaVehicles())) {
+                disponible = false;
+                break;
+            }
+        }
         return disponible;
     }
-    
+
     public ArrayList<Lloguer> getLloguers() {
         ArrayList<Lloguer> copy = (ArrayList<Lloguer>) lloguers.clone();
         return copy;
     }
+    
+    /**Comprova si les dates es solapen (two date ranges for overlap)**/
+    public boolean solapen(LocalDate x1, LocalDate x2, LocalDate y1, LocalDate y2) {
+       return max(x1,y1) <= min(x2,y2);
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" + "lloguers=" + lloguers + ", matricula=" + matricula + ", passatgers=" + passatgers + ", marca=" + marca + ", model=" + model + ", cavalls=" + cavalls + ", tipusCarnet=" + tipusCarnet + ", preuPerDia=" + preuPerDia + ", comentari=" + comentari + '}';
+    }
+    
 }

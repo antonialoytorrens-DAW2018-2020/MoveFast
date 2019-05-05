@@ -11,13 +11,11 @@ package flota;
  */
 public class Furgoneta extends Vehicle {
     private String tipusFurgoneta;
-    private int cavalls;
     private int portes;
 
-    public Furgoneta(String tipusFurgoneta, int cavalls, int portes, String matricula, int passatgers, String marca, String model, String tipusCarnet, double preuPerDia, String tipusVehicle, String comentari) {
-        super(matricula, passatgers, marca, model, tipusCarnet, preuPerDia, comentari);
+    public Furgoneta(String tipusFurgoneta, int portes, String matricula, int passatgers, String marca, String model, int cavalls, String tipusCarnet, double preuPerDia, String comentari) {
+        super(matricula, passatgers, marca, model, cavalls, tipusCarnet, preuPerDia, comentari);
         this.tipusFurgoneta = tipusFurgoneta;
-        this.cavalls = cavalls;
         this.portes = portes;
     }
 
@@ -28,15 +26,7 @@ public class Furgoneta extends Vehicle {
     public void setTipusFurgoneta(String tipusFurgoneta) {
         this.tipusFurgoneta = tipusFurgoneta;
     }
-
-    public int getCavalls() {
-        return cavalls;
-    }
-
-    public void setCavalls(int cavalls) {
-        this.cavalls = cavalls;
-    }
-
+    
     public int getPortes() {
         return portes;
     }
