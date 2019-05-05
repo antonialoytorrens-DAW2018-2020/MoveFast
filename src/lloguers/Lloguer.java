@@ -5,33 +5,24 @@
  */
 package lloguers;
 
+import clients.Client;
+import flota.Cotxe;
 import flota.Vehicle;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  *
  * @author antonialoy
  */
 public class Lloguer {
-    private ArrayList<Vehicle> infoVehicles;
-    private boolean disponible;
+    private Client client;
     private LocalDate lliuramentVehicles;
     private LocalDate recollidaVehicles;
 
-    public Lloguer(ArrayList<Vehicle> infoVehicles, boolean disponible, LocalDate lliuramentVehicles, LocalDate recollidaVehicles) {
-        this.infoVehicles = infoVehicles;
-        this.disponible = disponible;
+    public Lloguer(Client client, LocalDate lliuramentVehicles, LocalDate recollidaVehicles) {
+        this.client = client;
         this.lliuramentVehicles = lliuramentVehicles;
         this.recollidaVehicles = recollidaVehicles;
-    }
-
-    public boolean isDisponible() {
-        return disponible;
-    }
-
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
     }
 
     public LocalDate getLliuramentVehicles() {
@@ -49,5 +40,4 @@ public class Lloguer {
     public void setRecollidaVehicles(LocalDate recollidaVehicles) {
         this.recollidaVehicles = recollidaVehicles;
     }
-    
 }

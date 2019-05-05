@@ -5,11 +5,15 @@
  */
 package flota;
 
+import java.util.ArrayList;
+import lloguers.Lloguer;
+
 /**
  *
  * @author antonialoy
  */
 public abstract class Vehicle {
+    private ArrayList<Lloguer> lloguers;
     private String matricula;
     private int passatgers;
     private String marca;
@@ -26,6 +30,7 @@ public abstract class Vehicle {
         this.tipusCarnet = tipusCarnet;
         this.preuPerDia = preuPerDia;
         this.comentari = comentari;
+        this.lloguers = new ArrayList<>();
     }
 
     public String getMatricula() {
@@ -79,5 +84,14 @@ public abstract class Vehicle {
     public void setComentari(String comentari) {
         this.comentari = comentari;
     }
+
+    public boolean isDisponible() {
+        boolean disponible = true;
+        return disponible;
+    }
     
+    public ArrayList<Lloguer> getLloguers() {
+        ArrayList<Lloguer> copy = (ArrayList<Lloguer>) lloguers.clone();
+        return copy;
+    }
 }

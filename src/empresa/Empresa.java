@@ -6,7 +6,9 @@
 package empresa;
 
 import clients.Client;
+import flota.Cotxe;
 import flota.Vehicle;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import lloguers.Lloguer;
 
@@ -19,13 +21,11 @@ public class Empresa {
     private String nom;
     private ArrayList<Client> clients;
     private ArrayList<Vehicle> vehicles;
-    private ArrayList<Lloguer> lloguers;
 
     public Empresa(String nom) {
         this.nom = nom;
         this.clients = new ArrayList<>();
         this.vehicles = new ArrayList<>();
-        this.lloguers = new ArrayList<>();
     }
 
     public void afegirClient(Client x) {
@@ -35,7 +35,7 @@ public class Empresa {
     public void borrarClient(Client x) {
         clients.remove(x);
     }
-    
+
     public void afegirVehicle(Vehicle x) {
         vehicles.add(x);
     }
@@ -43,13 +43,22 @@ public class Empresa {
     public void borrarVehicle(Vehicle x) {
         vehicles.remove(x);
     }
-    
-    public void afegirLloguer(Lloguer x) {
-        lloguers.add(x);
+
+    public void afegirLloguer(Vehicle v, Lloguer x) throws DataIncorrectaException, DuracioIncorrectaException {
+        if (v.isDisponible() && x.getLliuramentVehicles().isBefore(x.getRecollidaVehicles()) && (ChronoUnit.DAYS.between(x.getLliuramentVehicles(), x.getRecollidaVehicles())) >= 1) {
+            v.getLloguers().add(x);
+        } else {
+            if (x.getLliuramentVehicles().isAfter(x.getRecollidaVehicles()) || x.getLliuramentVehicles().isEqual(x.getRecollidaVehicles())) {
+                throw new DataIncorrectaException("Les dates que s'han introduït són incorrectes");
+            }
+            if (ChronoUnit.MINUTES.between(x.getLliuramentVehicles(), x.getRecollidaVehicles()) < 30) {
+                throw new DuracioIncorrectaException("La duració mínima per llogar un vehicle és d'un dia");
+            }
+        }
     }
 
-    public void borrarLloguer(Lloguer x) {
-        lloguers.remove(x);
+    public void borrarLloguer(Vehicle v, Lloguer x) {
+       v.getLloguers().remove(x);
     }
 
     public String getNom() {
@@ -65,9 +74,13 @@ public class Empresa {
         ArrayList<Vehicle> copy = (ArrayList<Vehicle>) vehicles.clone();
         return copy;
     }
-
-    public ArrayList<Lloguer> getLloguers() {
-        ArrayList<Lloguer> copy = (ArrayList<Lloguer>) lloguers.clone();
-        return copy;
+    
+    public Vehicle obtenirCotxe(String matricula) {
+        for(Vehicle x : vehicles) {
+            if(x.getMatricula().equals(matricula)) {
+                return x;
+            }
+        }
+        return null;
     }
 }
