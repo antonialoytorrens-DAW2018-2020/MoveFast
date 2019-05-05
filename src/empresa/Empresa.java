@@ -43,7 +43,7 @@ public class Empresa {
         vehicles.remove(x);
     }
 
-    public void afegirLloguer(Vehicle v, Lloguer x) throws DataIncorrectaException, DuracioIncorrectaException {
+    public void afegirLloguer(Vehicle v, Lloguer x) throws DataIncorrectaException, DuracioIncorrectaException, VehicleInexistentException {
         if (v.isDisponible(x.getLliuramentVehicles(), x.getRecollidaVehicles()) && x.getLliuramentVehicles().isBefore(x.getRecollidaVehicles()) && (ChronoUnit.DAYS.between(x.getLliuramentVehicles(), x.getRecollidaVehicles())) >= 1) {
             v.getLloguers().add(x);
         } else {
@@ -53,11 +53,14 @@ public class Empresa {
             if (ChronoUnit.DAYS.between(x.getLliuramentVehicles(), x.getRecollidaVehicles()) < 1) {
                 throw new DuracioIncorrectaException("La duració mínima per llogar un vehicle és d'un dia");
             }
+            if (v == null) {
+                throw new VehicleInexistentException("La matrícula introduïda no existeix");
+            }
         }
     }
 
     public void borrarLloguer(Vehicle v, Lloguer x) {
-       v.getLloguers().remove(x);
+        v.getLloguers().remove(x);
     }
 
     public String getNom() {
@@ -73,10 +76,10 @@ public class Empresa {
         ArrayList<Vehicle> copy = (ArrayList<Vehicle>) vehicles.clone();
         return copy;
     }
-    
+
     public Vehicle obtenirCotxe(String matricula) {
-        for(Vehicle x : vehicles) {
-            if(x.getMatricula().equals(matricula)) {
+        for (Vehicle x : vehicles) {
+            if (x.getMatricula().equals(matricula)) {
                 return x;
             }
         }
